@@ -45,10 +45,6 @@ Agora rodamos o webpack
 **npx webpack**
 
 Vamos agora desenvolver a aplicaçao React no index.html.
-Toda a aplicação se desenvolve dentro da única <div> criada no body, que chamamos de <div id="root">. E importamos o script com a devida tag também:
-><body>
->  <div id="root"></div>
->  <script src="../dist/bundle.js"></script>
-></body>
-
+Toda a aplicação se desenvolve dentro da única <div> criada no body, que chamamos de "root". E importamos o script com a devida tag também:
+**script src="../dist/bundle.js"**
 Após criar essa div no index.html, passamos a trabalhar o React no index.jsx
