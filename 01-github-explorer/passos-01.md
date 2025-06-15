@@ -36,6 +36,7 @@ Configuramos agora o webpack
 **npm install --save-dev webpack**
 **npm install --save-dev webpack-cli**
 **npm install  --save-dev webpack-dev-server**
+Com o dev-server, não precisaremos ficar rodando npx webpack a cada vez que modificamos o jsx para atualizar o index.html. A partir de agora, para rodar usaremos "npx webpack serve"
 
 Também vamos instalar uma integração do webpack com o Babel:
 
@@ -48,3 +49,10 @@ Vamos agora desenvolver a aplicaçao React no index.html.
 Toda a aplicação se desenvolve dentro da única <div> criada no body, que chamamos de "root". E importamos o script com a devida tag também:
 **script src="../dist/bundle.js"**
 Após criar essa div no index.html, passamos a trabalhar o React no index.jsx
+Para não precisar colocar manualment eo script co o nome do arquivo bundle, usareoms um plugin do webpack:
+**npm i --save-dev html-webpack-plugin**
+E no webpack.config.js adicionar "const HtmlWebpackPlugin = require("html-webpack-plugin");"
+"plugins: [new HtmlWebpackPlugin({
+    template: path.resolve(__dirname, 'public', 'index.html')
+  })]"
+
