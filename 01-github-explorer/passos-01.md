@@ -53,8 +53,9 @@ Após criar essa div no index.html, passamos a trabalhar o React no index.jsx
 Para não precisar colocar manualment eo script co o nome do arquivo bundle, usarmos um plugin do webpack:
 **npm i --save-dev html-webpack-plugin**  
 
-E no webpack.config.js adicionar ''const HtmlWebpackPlugin = require("html-webpack-plugin");"
+E no webpack.config.js adicionar 
+
+``const HtmlWebpackPlugin = require("html-webpack-plugin");"
 "plugins: [new HtmlWebpackPlugin({
     template: path.resolve(__dirname, 'public', 'index.html')
-  })]''
-
+  })]``
