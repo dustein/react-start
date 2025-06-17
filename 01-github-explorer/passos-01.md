@@ -46,13 +46,15 @@ Agora rodamos o webpack
 **npx webpack**
 
 Vamos agora desenvolver a aplicaçao React no index.html.
-Toda a aplicação se desenvolve dentro da única <div> criada no body, que chamamos de "root". E importamos o script com a devida tag também:
-**script src="../dist/bundle.js"**
+Toda a aplicação se desenvolve dentro da única div criada no body, que chamamos de "root". E importamos o script com a devida tag também:
+**script src="../dist/bundle.js"**  
+
 Após criar essa div no index.html, passamos a trabalhar o React no index.jsx
-Para não precisar colocar manualment eo script co o nome do arquivo bundle, usareoms um plugin do webpack:
-**npm i --save-dev html-webpack-plugin**
-E no webpack.config.js adicionar "const HtmlWebpackPlugin = require("html-webpack-plugin");"
+Para não precisar colocar manualment eo script co o nome do arquivo bundle, usarmos um plugin do webpack:
+**npm i --save-dev html-webpack-plugin**  
+
+E no webpack.config.js adicionar ''const HtmlWebpackPlugin = require("html-webpack-plugin");"
 "plugins: [new HtmlWebpackPlugin({
     template: path.resolve(__dirname, 'public', 'index.html')
-  })]"
+  })]''
 
