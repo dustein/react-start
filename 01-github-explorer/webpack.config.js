@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: 'development',
+  devtool: 'eval-source-map',
   entry: path.resolve(__dirname, 'src', 'index.jsx'),
   output: {
     filename: 'bundle.js',
@@ -22,12 +23,29 @@ module.exports = {
     template: path.resolve(__dirname, 'public', 'index.html')
   })],
   module: {
-    rules: [
+      rules: [
       {
-        test: /\.jsx$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: {
+          loader: 'babel-loader',
+          options: {
+            targets: "defaults",
+            presets: [
+              ['@babel/preset-env']
+              ]
+            }
+          }
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: ["style-loader", "css-loader", 'sass-loader']
       }
-    ]
-  }
+    ],
+
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };

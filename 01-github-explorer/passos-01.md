@@ -55,7 +55,38 @@ Para não precisar colocar manualment eo script co o nome do arquivo bundle, usa
 
 E no webpack.config.js adicionar 
 
-``const HtmlWebpackPlugin = require("html-webpack-plugin");"
-"plugins: [new HtmlWebpackPlugin({
+``const HtmlWebpackPlugin = require("html-webpack-plugin");
+plugins: [new HtmlWebpackPlugin({
     template: path.resolve(__dirname, 'public', 'index.html')
-  })]``
+  })]``  
+
+Vamos configurar o Source Map, dentro do webpack, para ajudar no debug e detecção de erros que ocorrerem no App.jsx. (https://webpack.js.org/configuration/devtool/) No webpack.config, enquanto estivermos em ambiente de desenvolvimento, usamos "**devtool: 'eval-source-map'**". Quando for para produção, a configuração deve ser mudada para "devtool: 'source-map'". Para tanto, criaremos uma variável que se baseia na variãvel de ambiente do Node, no webpack.config "**const isDevelopment = process.env.NODE_ENV !== 'production'**". Então, configuramos a linha "mode"no webpack da seguinte forma "**mode: isDevelopment ? 'development' : 'production'**" e "**devtool: isDevelopment ? 'eval-source-map' : 'source-map'**". Ou seja, o modo em que estaremos trabalhando vai ser identificado pelo sistema e as alterações valerão. Usaremos o **npm install --save-dev cross-env**. Assim para rodar, configuramos no package.json os cripts 
+``"scripts": {
+    "dev": "cross-env NODE_ENV=developement webpack serve",
+    "build": "cross-env NODE_ENV=production webpack"
+  }``  
+Rodamos então "npm run dev" ou "npm run build" para desenvolvimento e produção respectivamente.  
+
+E finalmente, para acabar de configurar o ambiente, vamos ver a importação de arquivos CSS. Na pasta /src criamos a pasta /styles onde teremos o global.css. Usaremos o **npm install --save-dev style-loader** e **npm install --save-dev css-loader** Então, voltamos ao webpack.config onde criaremos novas regras (role) para importação de arquivos CSS.
+``    rules: [
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ["style-loader", "css-loader"]
+      }
+    ]``
+Agora no App.jsx importa o css, por exemplo "import './styles/global.css';"  
+Por fim, para utilizarmos SaaS, podemos utilizar um pré processador de CSS. Podemos utilizar por exemplo o próprio Saas. **npm install sass-loader sass webpack --save-dev** e **npm install sass-embedded --save-dev**. Modificamos então a rule do webpack incluindo o Saas:
+``{
+    test: /\.scss$/,
+    exclude: /node_modules/,
+    use: ["style-loader", "css-loader", 'sass-loader']
+  }``  
+Então renomeamos o global.css para globas.scss, e mudamos a importaçao respectiva no App.jsx.
+
+
+
+
+
+
+
