@@ -82,7 +82,14 @@ Por fim, para utilizarmos SaaS, podemos utilizar um pré processador de CSS. Pod
     exclude: /node_modules/,
     use: ["style-loader", "css-loader", 'sass-loader']
   }``  
-Então renomeamos o global.css para globas.scss, e mudamos a importaçao respectiva no App.jsx.
+Então renomeamos o global.css para globas.scss, e mudamos a importaçao respectiva no App.jsx.  
+
+Agora vamos iniciar a criação de componentes React finalmente.
+
+Para organizar, dentro de /src criamos /components e o arquivo RepositoryList.jsx, de onde iremos administrar uma listagem de repositórios.
+
+
+
 
 
 
