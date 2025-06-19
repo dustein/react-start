@@ -88,6 +88,14 @@ Agora vamos iniciar a criação de componentes React finalmente.
 
 Para organizar, dentro de /src criamos /components e o arquivo RepositoryList.jsx, de onde iremos administrar uma listagem de repositórios.
 
+Há uma ferramenta de integração entre o React e o Webpack muito boa para o ambiente de desenvolvimento, que vai nos permitir modificar o código e visualizar as modificações, porém mantendo o estado dos componentes (o que era também resetado pelo web server quando dá refresh no código).
+**npm install --save-dev @pmmmwh/react-refresh-webpack-plugin react-refresh**  
+No webpack.config:
+``const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');``
+Ver documentação, e também tem que constar o plugin na config do babel no ebpack: ``            plugins: [
+              isDevelopment && require.resolve('react-refresh/babel')
+            ].filter(Boolean)``  
+
 
 
 
