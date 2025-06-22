@@ -88,6 +88,9 @@ Agora vamos iniciar a criação de componentes React finalmente.
 
 Para organizar, dentro de /src criamos /components e o arquivo RepositoryList.jsx, de onde iremos administrar uma listagem de repositórios.
 
+Uma ferramenta útil quanto ao refresh no React, para que as modificiações feitas no código não provoquem o refresh no estado dos item (https://github.com/pmmmwh/react-refresh-webpack-plugin). Porém estava dando conflitos por causa da versão atual vs aula, então seguimos sem essa instalação.
+
+Criamos um arquivo /styles/respositories.scss.  
 
 
 
