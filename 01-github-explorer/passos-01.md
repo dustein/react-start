@@ -92,6 +92,8 @@ Uma ferramenta útil quanto ao refresh no React, para que as modificiações fei
 
 Criamos um arquivo /styles/respositories.scss.  
 
+019 - Vamos ver o UseEffect.  
+
 
 
 
