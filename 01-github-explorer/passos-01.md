@@ -94,6 +94,44 @@ Criamos um arquivo /styles/respositories.scss.
 
 019 - Vamos ver o UseEffect.  
 
+021 - Iniciando com o Typescript
+**npm install -D typescript**
+**npx -p typescript tsc --init**
+tsconfig.json:
+
+``  "target": "es2016",  
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],     
+    "jsx": "react-jsx",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowJs": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true``  
+
+E por fora do CompilerOptions, adicionar:
+``"include": ["src"]``  que vai apontar quetodo o código da aplicação estará exclusivamente dentro da pasta /src.  
+
+Agora, para usar Typescript, precisamos configurar mais um pouco o webpack para que o Babel possa entender os códigos TS.
+**npm install --save-dev @babel/preset-typescript**  
+E adiciona ao babel.cofig ``'@babel/preset-typescript',``
+E no webpack.config:
+``test: /\.(j|t)sx?$/,`` e ``extensions: ['.js', '.jsx', '.ts', '.tsx']``  
+e ``entry: path.resolve(__dirname, 'src', 'index.tsx'),``
+Então, mudamos nosso arqivo index.jsx para index.tsx já que passaremos a usar TS.
+Vamos ter que rever então as bibliotecas que importamos de terceiros, já que algumas não incluem por padrão as definições de tipagem do TS, como por exemplo a react-dom.
+**npm i --save-dev @types/react-dom**
+
+
+
+
+
+
+
 
 
 
