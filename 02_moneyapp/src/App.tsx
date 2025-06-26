@@ -1,3 +1,9 @@
+import styled from "styled-components";
+
+const Title = styled.h1`
+  color: aliceblue;
+`
+
 
 export function App() {
   return (
