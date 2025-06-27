@@ -22,4 +22,6 @@ Nesta altura, como não temos um backend ainda, para conectar a uma API e obter 
 
 Agora para não precisar fazer as requisições utilizando "fetch", iremos configurar um cliente HTTP. Usaremos o Axios. **npm install axios**
 
+Para executar um modal, usaremos uma biblioteca **npm i react-modal**
+
 
