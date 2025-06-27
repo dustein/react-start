@@ -4,6 +4,7 @@ import { Dashboard } from "./components/Dashboard";
 import { TransactionsTable } from "./components/TransactionsTable";
 import { useState } from "react";
 import Modal from 'react-modal';
+import { NewTranscationModal } from "./components/NewTransactionModal";
 
 // Para acessibilidade apenas:
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
@@ -25,9 +26,9 @@ export function App() {
     <>
       <Header onHandleOpenModal={handleOpenModal} />
       <Dashboard />
-      <Modal isOpen={isNewTransactionMOdalOpen} onRequestClose={handleCloseModal}>
-          <h2>Cadastrar !</h2>
-      </Modal>      
+
+      <NewTranscationModal isOpen={isNewTransactionMOdalOpen} onRequestClose={handleCloseModal}/>
+
       <TransactionsTable />
       <GlobalStyle />
     </>
