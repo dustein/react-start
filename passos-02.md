@@ -25,6 +25,8 @@ Agora para não precisar fazer as requisições utilizando "fetch", iremos confi
 Para executar um modal, usaremos uma biblioteca **npm i react-modal**
 A estilização do modal, verifique na documentação tem três opçoes de fazer. Iremos na que usamos a propriedade overlayClassName.
 
+Para estilizar a borda do botao em styles do NewTransactionModal, usamos uma biblioteca **npm i polished**
+
 
 
 
