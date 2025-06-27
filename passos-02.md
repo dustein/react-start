@@ -16,3 +16,7 @@ Em global, uma boa prática CSS é configurar o tamanho da fonte para tamanhos d
   }
 ``  
 Passamos a criar os Components da aplicação, dentro da pasta /src/components.
+
+Nesta altura, como não temos um backend ainda, para conectar a uma API e obter dados, para fins de testes, em ambiente de desenvolvimento, utilizaremos uma "API fake". No caso a MirageJS.  
+**npm install --save-dev miragejs**
+
