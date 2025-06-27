@@ -20,3 +20,6 @@ Passamos a criar os Components da aplicação, dentro da pasta /src/components.
 Nesta altura, como não temos um backend ainda, para conectar a uma API e obter dados, para fins de testes, em ambiente de desenvolvimento, utilizaremos uma "API fake". No caso a MirageJS.  
 **npm install --save-dev miragejs**
 
+Agora para não precisar fazer as requisições utilizando "fetch", iremos configurar um cliente HTTP. Usaremos o Axios. **npm install axios**
+
+
