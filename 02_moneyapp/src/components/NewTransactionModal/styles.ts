@@ -1,6 +1,6 @@
 import styled from "styled-components";
 /* As classes de estilização do Modal {"react-modal-overlay"} e {"react-modal-content"} optamos por fazer no arquivo de css Global, veja lá */
-import { darken } from 'polished';
+import { darken, transparentize } from 'polished';
 export const Container = styled.form`
 
   h2 {
@@ -57,11 +57,18 @@ export const TransactionTypeContainer = styled.div`
 
 interface RadioBoxProps {
   isActive: boolean;
+  activeColor: 'green'|'red';
 }
+
+const colors = {
+  green: 'rgb(145, 225, 169)',
+  red: 'rgb(211, 66, 66)'
+}
+
 
 export const RadioBox = styled.button<RadioBoxProps>`
   
-  background: ${(props) => props.isActive ? 'ddd' : 'transparent'};
+  background: ${(props) => props.isActive ? transparentize(0.7, colors[props.activeColor]) : 'transparent'};
   
   height: 4rem;
   border: 1px solid #d7d7d7;
