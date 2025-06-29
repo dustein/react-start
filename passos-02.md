@@ -27,6 +27,12 @@ A estilização do modal, verifique na documentação tem três opçoes de fazer
 
 Para estilizar a borda do botao em styles do NewTransactionModal, usamos uma biblioteca **npm i polished**
 
+050 - Vamos começar a ver Contexto. Criamos o TrasactionContext.tsx. E usaremos o hook useContext.
+
+
+
+
+
 
 
 

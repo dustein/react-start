@@ -5,6 +5,7 @@ import { TransactionsTable } from "./components/TransactionsTable";
 import { useState } from "react";
 import Modal from 'react-modal';
 import { NewTranscationModal } from "./components/NewTransactionModal";
+import { TransactionsProvider } from "./TransactionsContext";
 
 // Para acessibilidade apenas:
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
@@ -23,7 +24,7 @@ export function App() {
   }  
 
   return (
-    <>
+    <TransactionsProvider>
       <Header onHandleOpenModal={handleOpenModal} />
       <Dashboard />
 
@@ -31,7 +32,7 @@ export function App() {
 
       <TransactionsTable />
       <GlobalStyle />
-    </>
+    </TransactionsProvider>
   );
 }
 
