@@ -29,6 +29,7 @@ Para estilizar a borda do botao em styles do NewTransactionModal, usamos uma bib
 
 050 - Vamos começar a ver Contexto. Criamos o TrasactionContext.tsx. E usaremos o hook useContext.
 
+052 - Erro ao registrar info no botao do modal. Provavelmente quando mudei os nomes das variáveis transaction etc entre singular e plural.
 
 
 
