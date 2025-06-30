@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-        
+        <link rel="shortcut icon" href="/news-favicon.png" type="image/png" />
         <title>NEWS App Next</title>
       </Head>
       <body>
