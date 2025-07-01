@@ -1,8 +1,10 @@
 import Head from 'next/head';
 import { SubscribeButton }  from '../components/SubscribeButton';
 import styles from './home.module.scss';
+import { GetServerSideProps } from 'next';
 
-export default function Home() {
+export default function Home(props) {
+  console.log(props)
   return (
       <>
     <Head>
@@ -20,4 +22,12 @@ export default function Home() {
     </main>
       </>
   );
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  console.log("Esse aparece no console do servidor Node que o Next roda")
+  // Tudo que retornar de props no return abaixo, será mostrado na página. Assi o console.log na funçõ Home() mostrará a props "nome: 'Eduardo'" conforme return abaixo, aparece no console do browser cliente.
+  return {
+    props: { nome: 'Eduardo'}
+  }
 }

@@ -13,8 +13,12 @@ Icones
 Stripe.
 Developers - API Keys - Secret Key: copia chave secreta. Dentoe de /src cria ".env.local". Vide documentação do Next quanto aos tipos de arquivos de variáveis de sistema por ambiente.
 
-Neste momento veremos pela primeira vez o SSR - Server Side Rendering, para que a renderização seja feita dessa vez não no cliente (dferente do SSG - Static Site Generation), de forma que o conteúdo carregado pela API externa seja renderizado na página juntamente com o conteúdo. As chamadas HTTP para a API serão feitas não no browser cliente, mas no servidor Node do Next.
+Neste momento veremos pela primeira vez o SSR - Server Side Rendering, para que a renderização seja feita dessa vez não no cliente (dferente do SSG - Static Site Generation / Client Side Rendering), de forma que o conteúdo carregado pela API externa seja renderizado na página juntamente com o conteúdo. As chamadas HTTP para a API serão feitas não no browser cliente, mas no servidor Node do Next.
 Veja que o SSR tem o impacto de atrasar a exibição da página para o usuário, pois só será renderizada após a reposta da API, que pode ter uma latência não sabida pois é externa.
+Lembrar também que o SSR só funciona em páginas, e não em componentes diretamente. Assim precisamos repassar a informação vinda da API na página para o componente, a partir da página.
+Então começamos a escrever agora na página Home (index.tsx).
+
+
 
 
 
