@@ -10,7 +10,5 @@ export default function App({ Component, pageProps: {session, ...pageProps} }: A
     <Header />
     <Component {...pageProps} />
   </SessionProvider>
-  
-
   );
 }
