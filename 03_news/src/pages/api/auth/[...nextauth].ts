@@ -21,11 +21,13 @@ export const authOptions = {
     async signIn({user, account, profile}) {
       console.log(user);
       const { email } = user;
-      const { error } = await supabase.from('users').insert([{ email: email }]);
-      if (error) {
-        console.log("Deu erro ", error.message)
+      try {
+        await supabase.from('users').insert([{ email: email }]);
+      
+        return true;
+      } catch {
+        return false;
       }
-      return true;
     }
   }
 }
