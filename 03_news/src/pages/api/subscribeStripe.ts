@@ -8,6 +8,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const session = await getSession( { req })
     // const { priceId } = req.body;
     const priceId = 'price_1RiyrlPwYpXky6iGFzi1Z9Wc';
+    if (!session || !session.user || !session.user.email) {
+      return res.status(401).json({ error: "User not authenticated" });
+    }
+    console.log("priceId: " + priceId)
 
     const stripeCustomer =  await stripe.customers.create({
       email: session.user.email,
@@ -15,7 +19,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     })
 
     const stripeCheckoutSession = await stripe.checkout.sessions.create({
-      customer: stripeCustomer.id, //aqui pegamos o ID do cliente no Stripe, não é do BD.
+      
+      customer: stripeCustomer.id, //aqui pegamos o ID do cliente no Stripe, não é do Banco de Dados.
       payment_method_types: ['card'],
       billing_address_collection: "required",
       line_items: [

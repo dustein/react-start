@@ -2,7 +2,6 @@ import { signIn, useSession } from 'next-auth/react';
 import styles from './styles.module.scss';
 import { api } from '../../services/api';
 import { getStripeJs } from '../../services/stripe-js';
-import { error } from 'console';
 
 
 interface SubscribeButtonProps {
@@ -42,8 +41,8 @@ async function handleSubscribeStripe() {
       type='button'
       className={styles.subscribeButton}
       onClick={handleSubscribeStripe}
-      >
-        Subscribe NOW
-      </button>
+    >
+      Subscribe NOW
+    </button>
   )
 }
