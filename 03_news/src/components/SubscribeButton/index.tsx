@@ -2,6 +2,7 @@ import { signIn, useSession } from 'next-auth/react';
 import styles from './styles.module.scss';
 import { api } from '../../services/api';
 import { getStripeJs } from '../../services/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 
 interface SubscribeButtonProps {
@@ -22,18 +23,22 @@ async function handleSubscribeStripe() {
     //checkout session no Stripe
   try {
     const response = await api.post('/subscribeStripe')
+    console.log(response.data);
   
     const { sessionId } = response.data;
+
+    if (!sessionId) {
+      alert('sessionId nao retornado do back-end')
+      return
+    }
   
     const stripe = await getStripeJs()
   
-    // await stripe.checkout.sessions.create({sessionId: sessionId}) // Deprecated
-    
-
+    await stripe.redirectToCheckout( { sessionId: sessionId } )
   
   } catch (err) {
     alert(err.message);
-  }
+    }
   }
 
   return (
