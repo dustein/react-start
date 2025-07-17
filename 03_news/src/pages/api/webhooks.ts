@@ -23,8 +23,12 @@ export const config = {
   }
 }
 
+// vamos focar nos eventos que nos interessam apenas
 const eventosRelevantes = new Set([
-  'checkout.session.completed'
+  'checkout.session.completed',
+  // 'customer.subscription.created',
+  'customer.subscription.updated',
+  'customer.subscription.deleted',
 ])
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -49,17 +53,35 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { type } = event;
 
     if (eventosRelevantes.has(type)) {
-      console.log("->>>>> Evento recebido? ", event)
-
+      // console.log("->>>>> Evento recebido? ", event)
       try {
         switch (type) {
-          case 'checkout.session.completed':
+          // case 'customer.subscription.created':
+          case 'customer.subscription.updated':
+          case 'customer.subscription.deleted':
             
+          
+            const subscription = event.data.object as Stripe.Subscription;
+            console.log("->>> update sub com o evento 'customer.subscription.updated ou deleted'")
+            await saveSubscription(
+              subscription.id,
+              subscription.customer.toString(),
+              // cria sub no bd somente caso o type seja created
+              // type === 'customer.subscription.created'
+              false
+            )
+
+            break;
+
+          case 'checkout.session.completed':
+            console.log("->>> salvouSbscription com o evento 'checkout.session.completed'")
             const checkoutSession = event.data.object as Stripe.Checkout.Session
 
             await saveSubscription(
               checkoutSession.subscription.toString(),
               checkoutSession.customer.toString(),
+              // cria sub no bd
+              true
             )
 
             break;
