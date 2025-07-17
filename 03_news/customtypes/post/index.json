@@ -1,0 +1,33 @@
+{
+  "format": "custom",
+  "id": "post",
+  "label": "Post",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Title",
+          "placeholder": "Primeiro Texto",
+          "allowTargetBlank": false,
+          "single": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "content": {
+        "type": "Text",
+        "config": {
+          "label": "Content",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}
