@@ -2,14 +2,12 @@ import Link from 'next/link';
 import { SignInButton } from '../SignInButton';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
+import { ActiveLink } from '../ActiveLinks';
 
 export function Header() {
 
-  const { asPath } = useRouter();
-
-  console.log(asPath)
-
   return (
+
  <header className={styles.headerContainer}>
     <div className={styles.headerContent}>
       <div className={styles.logo}>
@@ -17,12 +15,14 @@ export function Header() {
         <span>NEWS App</span>
       </div>
       <nav>
-        <Link  className={styles.active} href="/">
+
+        <ActiveLink activeClassName={styles.active} href="/">
           Home
-        </Link>
-        <Link href="/posts">
+        </ActiveLink>
+        <ActiveLink activeClassName={styles.active} href="/posts">
           Posts
-        </Link>
+        </ActiveLink>
+
       </nav>
 
         <SignInButton />
