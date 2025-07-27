@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import styles from './styles.module.scss'
+import { GetStaticProps } from 'next';
+import { createClient } from '@prismicio/client';
 
 
 export default function Posts() {
