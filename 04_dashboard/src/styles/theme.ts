@@ -16,18 +16,6 @@ const customConfig = defineConfig({
           100: { value: "#D1D2DC" },
           50:  { value: "#EEEEF2" },
         },
-        pink: {
-          50:  { value: "#FFF5F7" },
-          100: { value: "#FED7E2" },
-          200: { value: "#FBB6CE" },
-          300: { value: "#F687B3" },
-          400: { value: "#ED64A6" },
-          500: { value: "#D53F8C" },
-          600: { value: "#B83280" },
-          700: { value: "#97266D" },
-          800: { value: "#702459" },
-          900: { value: "#521B41" }
-        }
       },
       fonts: {
         heading: { value: "Roboto" },
