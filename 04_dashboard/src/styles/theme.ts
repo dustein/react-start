@@ -21,8 +21,7 @@ const customConfig = defineConfig({
         heading: { value: "Roboto" },
         body: { value: "Roboto" },
       }
-    }
-    // Outras customizações, caso desejar...
+    },
   },
   globalCss: {
     body: {
