@@ -1,22 +1,56 @@
 import { HeaderComponent } from "@/components/HeaderComponent";
 import { SidebarComponent } from "@/components/SidebarComponent";
-import { Box, Flex, SimpleGrid, Text, theme } from "@chakra-ui/react";
-// import Chart from "react-apexcharts";
+import { Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
+// import Chart from "react-apexcharts"; // importado de outra forma, const Chart abaixo.
 import dynamic from 'next/dynamic';
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
-const options = {
+const options: ApexCharts.ApexOptions = {
   chart: {
     toolbar: { show: false },
     zoom: { enabled: false },
-    foreColor: { theme.tokens.colors.gray[500]}
+    foreColor: "#616480"
+    // foreColor: system.theme.tokens.colors.gray["500"].value;
   },
   grid: {
     show: false
+  },
+  dataLabels: {
+    enabled: false
+  },
+  tooltip: {
+    enabled: false
+  },
+  xaxis: { 
+    type: 'datetime',
+    axisBorder: {
+      color: "#616480"
+    },
+    axisTicks: {
+      color: "#616480"
+    },
+    categories: [
+    '2021-03-18T00:00:00.000Z',
+    '2021-03-19T00:00:00.000Z',
+    '2021-03-20T00:00:00.000Z',
+    '2021-03-21T00:00:00.000Z',
+    '2021-03-22T00:00:00.000Z',
+    '2021-03-23T00:00:00.000Z',
+    '2021-03-24T00:00:00.000Z',
+    ]
+  },
+  fill: {
+    opacity: 0.3,
+    type: 'gradient',
+    gradient: {
+      shade: 'dark',
+      opacityFrom: 0.7,
+      opacityTo: 0.1
+    }
   }
-};
+}
 
 const series = [
   { name: 'serie1', data: [31, 120, 90, 128, 77, 89, 100]}
@@ -31,12 +65,14 @@ export default function Dashboard() {
         <SidebarComponent />
 
         <SimpleGrid flex="1" gap="4" minChildWidth={320} alignItems="flex-start">
-          <Box p="8" bg="gray.800" borderRadius={8}>
+          <Box p="8" bg="gray.800" borderRadius={8} pb="4">
             <Text>Inscritos da Semana</Text>
             <Chart options={options} series={series} type="area" height={160}/>
           </Box>
-          <Box p="8" bg="gray.800" borderRadius={8}>
+          <Box p="8" bg="gray.800" borderRadius={8} pb="4">
             <Text>Taxa de Abertura</Text>
+            <Chart options={options} series={series} type="area" height={160}/>
+
           </Box>
 
         </SimpleGrid>

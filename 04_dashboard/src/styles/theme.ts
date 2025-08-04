@@ -28,6 +28,7 @@ const customConfig = defineConfig({
       background: "{colors.gray.900}",
       color: "{colors.gray.50}",
       fontFamily: "{fonts.body}",
+      fontSize: 16
     },
     // "h1, h2, h3, h4, h5, h6": {
     //   fontFamily: "{fonts.heading}",
