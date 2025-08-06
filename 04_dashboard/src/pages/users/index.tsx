@@ -4,6 +4,7 @@ import { Box, Button, ButtonGroup, Checkbox, Flex, Heading, Icon, IconButton, Pa
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { system } from '../../styles/theme';
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { PaginationComponent } from '../../components/PaginationComponent/index';
 
 export default function UserList() {
   return (
@@ -61,7 +62,7 @@ export default function UserList() {
                   <Table.Cell>05 de Agosto, 2025</Table.Cell>
                   <Table.Cell><Button as="a" size="sm" fontSize="small" colorPalette="cyan"><Icon as={RiPencilLine} />Editar</Button></Table.Cell>
                 </Table.Row>
-  <Table.Row bg="transparent">
+                <Table.Row bg="transparent">
                   <Table.Cell px="4"><Checkbox.Root colorPalette="pink">
                       <Checkbox.HiddenInput />
                       <Checkbox.Control>
@@ -130,6 +131,9 @@ export default function UserList() {
                 </Pagination.NextTrigger>
               </ButtonGroup>
             </Pagination.Root>
+
+            <PaginationComponent />
+
           </Stack>
         </Box>
 
