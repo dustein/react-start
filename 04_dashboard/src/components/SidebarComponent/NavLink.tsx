@@ -3,6 +3,7 @@ import { ElementType } from "react";
 
 interface NavLinkProps {
   icon: ElementType;
+  href: string;
   children: string;
 }
 
