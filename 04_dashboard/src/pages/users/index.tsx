@@ -2,9 +2,9 @@ import { HeaderComponent } from "@/components/HeaderComponent";
 import { SidebarComponent } from "@/components/SidebarComponent";
 import { Box, Button, ButtonGroup, Checkbox, Flex, Heading, Icon, IconButton, Pagination, Stack, Table, Text } from "@chakra-ui/react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
-import { system } from '../../styles/theme';
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { PaginationComponent } from '../../components/PaginationComponent/index';
+import Link from "next/link";
 
 export default function UserList() {
   return (
@@ -18,7 +18,7 @@ export default function UserList() {
           <Flex mb="8" justify="space-between" alignContent="center">
             <Heading size="lg" fontWeight="normal">Usuários</Heading>
 
-            <Button as="a" size="sm" fontSize="small" colorPalette="pink"><Icon as={RiAddLine} />Criar Novo</Button>
+            <Link href="users/create" passHref><Button size="sm" fontSize="small" colorPalette="pink"><Icon as={RiAddLine} />Criar Novo</Button></Link>
 
           </Flex>
           <Stack width="full" gap="5">

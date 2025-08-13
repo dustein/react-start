@@ -2,6 +2,7 @@ import { InputComponent } from "@/components/Form/Input";
 import { HeaderComponent } from "@/components/HeaderComponent";
 import { SidebarComponent } from "@/components/SidebarComponent";
 import { Box, Button, Flex, Heading, HStack, Separator, SimpleGrid, VStack } from "@chakra-ui/react";
+import Link from "next/link";
 
 export default function UserList() {
   return (
@@ -28,7 +29,7 @@ export default function UserList() {
 
           <Flex mt="8" justify="flex-end">
             <HStack gap="4">
-              <Button colorPalette="gray">Cancelar</Button>
+              <Link href="/users" passHref><Button colorPalette="gray">Cancelar</Button></Link>
               <Button colorPalette="pink">Salvar</Button>
             </HStack>
 

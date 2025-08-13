@@ -15,7 +15,7 @@ export function Profile({ showProfileData = true }: ProfileProps) {
         </Box>
       )}
 
-      <Avatar.Root shape="full" size="md">
+      <Avatar.Root shape="full" size={["sm", "md"]}>
         <Avatar.Fallback name="Eduardo Stein" />
         <Avatar.Image src="https://avatars.githubusercontent.com/u/68870425?v=4&size=64" />
       </Avatar.Root>
