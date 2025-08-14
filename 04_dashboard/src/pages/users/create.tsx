@@ -1,4 +1,4 @@
-import { InputComponent } from "@/components/Form/Input";
+import { InputComponent } from "@/components/Form/InputComponent";
 import { HeaderComponent } from "@/components/HeaderComponent";
 import { SidebarComponent } from "@/components/SidebarComponent";
 import { Box, Button, Flex, Heading, HStack, Separator, SimpleGrid, VStack } from "@chakra-ui/react";
