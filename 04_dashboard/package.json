@@ -23,9 +23,12 @@
     "yup": "^1.7.0"
   },
   "devDependencies": {
+    "@types/faker": "^6.6.11",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "faker": "^6.6.6",
+    "miragejs": "^0.1.48",
     "typescript": "^5"
   }
 }
