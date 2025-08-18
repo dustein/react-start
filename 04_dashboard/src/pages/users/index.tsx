@@ -1,12 +1,24 @@
 import { HeaderComponent } from "@/components/HeaderComponent";
 import { SidebarComponent } from "@/components/SidebarComponent";
-import { Box, Button, ButtonGroup, Checkbox, Flex, Heading, Icon, IconButton, Pagination, Stack, Table, Text } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Checkbox, Flex, Heading, Icon, IconButton, Pagination, Stack, Table, Text, useBreakpoint, useBreakpointValue } from "@chakra-ui/react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { PaginationComponent } from '../../components/PaginationComponent/index';
 import Link from "next/link";
+import { useEffect } from "react";
+import { responseCookiesToRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
 export default function UserList() {
+
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  })
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/users').then(response => response.json()).then(data => console.log(data))
+  }, [])
+
   return (
     <Box>
       <HeaderComponent />

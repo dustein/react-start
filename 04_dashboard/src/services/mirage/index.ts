@@ -1,7 +1,9 @@
 import { createServer, Factory, Model } from 'miragejs';
 
 // para criar dados fictícios automaticamente, podemos usar uma lib chamada faker.
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
+
+const randomEmail = faker.internet.email();
 
 type User = {
   name: string;
@@ -19,16 +21,18 @@ export function makeServer() {
     factories: {
       user: Factory.extend({
         name(i : number) {  
-          return 'User ${i+1}'
+          return `Usuário ${i+1}`
         },
         email() {
-          return faker
+          return faker.internet.email().toLowerCase();
         },
-        createdAt() {},
+        createdAt() {
+          return faker.date.recent({days: 10})
+        },
       })
     },
     seeds(server) {
-
+      server.createList('user', 88)
     },
 
     routes() {
