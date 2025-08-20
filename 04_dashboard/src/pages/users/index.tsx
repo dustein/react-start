@@ -1,14 +1,39 @@
 import { HeaderComponent } from "@/components/HeaderComponent";
 import { SidebarComponent } from "@/components/SidebarComponent";
-import { Box, Button, ButtonGroup, Checkbox, Flex, Heading, Icon, IconButton, Pagination, Stack, Table, Text, useBreakpoint, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Checkbox, Flex, Heading, Icon, IconButton, Pagination, Spinner, Stack, Table, Text, useBreakpoint, useBreakpointValue } from "@chakra-ui/react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { PaginationComponent } from '../../components/PaginationComponent/index';
 import Link from "next/link";
 import { useEffect } from "react";
-import { responseCookiesToRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
+import { useQuery } from "@tanstack/react-query";
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: string;
+}
 
 export default function UserList() {
+
+  const { data, isLoading, error } = useQuery({ queryKey: ['users'], queryFn: async () => {
+    const response = await fetch('http://localhost:3000/api/users')
+    const data = await response.json()
+    
+    const users = data.users.map((user: User )=> {
+      return {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
+      }
+
+    })
+    
+    return users
+
+  } })
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -35,92 +60,72 @@ export default function UserList() {
           </Flex>
           <Stack width="full" gap="5">
 
-            <Table.Root colorPalette='pink' interactive>
-              <Table.Caption />
+          { isLoading ? (
+            <Flex justify='center'>
+              <Spinner />
+            </Flex>
+          ) : error ? (
+            <Flex justify='center'>
+              <Text>Falha ao carregar lista de usuários</Text>
+            </Flex>
+          ) : (
+            <>
+              {/* // tabela */}
+              <Table.Root colorPalette='pink' interactive>
+                <Table.Caption />
 
-              <Table.Header>
-                <Table.Row bg="transparent" color="gray.300">
-                  <Table.ColumnHeader px="4" width="4">
-                    <Checkbox.Root colorPalette="pink">
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control>
-                        <Checkbox.Indicator />
-                      </Checkbox.Control>
-                      <Checkbox.Label />
-                    </Checkbox.Root>
-                  </Table.ColumnHeader>
-                  <Table.ColumnHeader color="gray.300">Usuário</Table.ColumnHeader>
-                  <Table.ColumnHeader color="gray.300">Data de Cadastro</Table.ColumnHeader>
-                  <Table.ColumnHeader w="8"></Table.ColumnHeader>
-                </Table.Row>
-              </Table.Header>
+                <Table.Header>
+                  <Table.Row bg="transparent" color="gray.300">
+                    <Table.ColumnHeader px="4" width="4">
+                      <Checkbox.Root colorPalette="pink">
+                        <Checkbox.HiddenInput />
+                        <Checkbox.Control>
+                          <Checkbox.Indicator />
+                        </Checkbox.Control>
+                        <Checkbox.Label />
+                      </Checkbox.Root>
+                    </Table.ColumnHeader>
+                    <Table.ColumnHeader color="gray.300">Usuário</Table.ColumnHeader>
+                    <Table.ColumnHeader color="gray.300">Data de Cadastro</Table.ColumnHeader>
+                    <Table.ColumnHeader w="8"></Table.ColumnHeader>
+                  </Table.Row>
+                </Table.Header>
+                
+                <Table.Body>
+                  { data.map((user: User) => { 
+                    return (
+                      <Table.Row bg="transparent" key={user.id}>
+                        <Table.Cell px="4"><Checkbox.Root colorPalette="pink">
+                            <Checkbox.HiddenInput />
+                            <Checkbox.Control>
+                              <Checkbox.Indicator />
+                            </Checkbox.Control>
+                            <Checkbox.Label />
+                          </Checkbox.Root>
+                        </Table.Cell>
+                        <Table.Cell>
+                          <Box>
+                            <Text fontWeight="bold">{user.name}</Text>
+                            <Text fontSize="sm" color="gray.300">{user.email}</Text>
+                          </Box>
+                        </Table.Cell>
+                        <Table.Cell><Text fontSize='smaller'>{user.createdAt }</Text></Table.Cell>
+                        <Table.Cell><Button as="a" size="sm" fontSize="small" colorPalette="cyan"><Icon as={RiPencilLine} />Editar</Button></Table.Cell>
+                      </Table.Row>
+                    )
+                  }) }
+                  
+                </Table.Body>
+                
+                <Table.Footer>
+                  <Table.Row>
+                    <Table.Cell />
+                  </Table.Row>
+                </Table.Footer>
               
-              <Table.Body>
-                <Table.Row bg="transparent">
-                  <Table.Cell px="4"><Checkbox.Root colorPalette="pink">
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control>
-                        <Checkbox.Indicator />
-                      </Checkbox.Control>
-                      <Checkbox.Label />
-                    </Checkbox.Root>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Box>
-                      <Text fontWeight="bold">Eduardo Stein</Text>
-                      <Text fontSize="sm" color="gray.300">eduardo@stein.up</Text>
-                    </Box>
-                  </Table.Cell>
-                  <Table.Cell>05 de Agosto, 2025</Table.Cell>
-                  <Table.Cell><Button as="a" size="sm" fontSize="small" colorPalette="cyan"><Icon as={RiPencilLine} />Editar</Button></Table.Cell>
-                </Table.Row>
-                <Table.Row bg="transparent">
-                  <Table.Cell px="4"><Checkbox.Root colorPalette="pink">
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control>
-                        <Checkbox.Indicator />
-                      </Checkbox.Control>
-                      <Checkbox.Label />
-                    </Checkbox.Root>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Box>
-                      <Text fontWeight="bold">Eduardo Stein</Text>
-                      <Text fontSize="sm" color="gray.300">eduardo@stein.up</Text>
-                    </Box>
-                  </Table.Cell>
-                  <Table.Cell>05 de Agosto, 2025</Table.Cell>
-                  <Table.Cell><Button as="a" size="sm" fontSize="small" colorPalette="cyan"><Icon as={RiPencilLine} />Editar</Button></Table.Cell>
-                </Table.Row>
-                <Table.Row bg="transparent">
-                  <Table.Cell px="4"><Checkbox.Root colorPalette="pink">
-                      <Checkbox.HiddenInput />
-                      <Checkbox.Control>
-                        <Checkbox.Indicator />
-                      </Checkbox.Control>
-                      <Checkbox.Label />
-                    </Checkbox.Root>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Box>
-                      <Text fontWeight="bold">Eduardo Stein</Text>
-                      <Text fontSize="sm" color="gray.300">eduardo@stein.up</Text>
-                    </Box>
-                  </Table.Cell>
-                  <Table.Cell>05 de Agosto, 2025</Table.Cell>
-                  <Table.Cell><Button as="a" size="sm" fontSize="small" colorPalette="cyan"><Icon as={RiPencilLine} />Editar</Button></Table.Cell>
-                </Table.Row>
-              </Table.Body>
-              
-              <Table.Footer>
-                <Table.Row>
-                  <Table.Cell />
-                </Table.Row>
-              </Table.Footer>
-            
-            </Table.Root>
+              </Table.Root>
 
-            <Pagination.Root colorPalette="pink" count={5} pageSize={5} page={1}>
+              <Pagination.Root colorPalette="pink" count={5} pageSize={5} page={1}>
               <ButtonGroup variant="subtle" size="sm" wrap="wrap">
                 <Pagination.PrevTrigger asChild>
                   <IconButton>
@@ -145,6 +150,14 @@ export default function UserList() {
             </Pagination.Root>
 
             <PaginationComponent />
+
+              {/* fim da tabela?  */}
+            </>
+          )}
+
+
+
+            
 
           </Stack>
         </Box>
