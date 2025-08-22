@@ -6,7 +6,7 @@ import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { PaginationComponent } from '../../components/PaginationComponent/index';
 import Link from "next/link";
 import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQueryClient , useQuery } from "@tanstack/react-query";
 
 interface User {
   id: string;
@@ -17,7 +17,7 @@ interface User {
 
 export default function UserList() {
 
-  const { data, isLoading, error } = useQuery({ queryKey: ['users'], queryFn: async () => {
+  const { data, isLoading, error, isFetching } = useQuery({ queryKey: ['users'], queryFn: async () => {
     const response = await fetch('http://localhost:3000/api/users')
     const data = await response.json()
     
@@ -33,7 +33,9 @@ export default function UserList() {
     
     return users
 
-  } })
+  }, staleTime: 1000 * 5
+
+ })
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -53,7 +55,10 @@ export default function UserList() {
 
         <Box flex="1" borderRadius={8} bg="gray.800" p="8">
           <Flex mb="8" justify="space-between" alignContent="center">
-            <Heading size="lg" fontWeight="normal">Usuários</Heading>
+            <Heading size="lg" fontWeight="normal">
+              Usuários
+              { !isLoading && isFetching && <Spinner color="gray.500" ml="4"/> }
+            </Heading>
 
             <Link href="users/create" passHref><Button size="sm" fontSize="small" colorPalette="pink"><Icon as={RiAddLine} />Criar Novo</Button></Link>
 
@@ -85,8 +90,12 @@ export default function UserList() {
                         <Checkbox.Label />
                       </Checkbox.Root>
                     </Table.ColumnHeader>
-                    <Table.ColumnHeader color="gray.300">Usuário</Table.ColumnHeader>
-                    <Table.ColumnHeader color="gray.300">Data de Cadastro</Table.ColumnHeader>
+                    <Table.ColumnHeader color="gray.300">
+                      Usuário                   
+                    </Table.ColumnHeader>
+                    <Table.ColumnHeader color="gray.300">
+                      Data de Cadastro
+                    </Table.ColumnHeader>
                     <Table.ColumnHeader w="8"></Table.ColumnHeader>
                   </Table.Row>
                 </Table.Header>

@@ -4,6 +4,7 @@ import { system } from '../styles/theme';
 import { makeServer } from "@/services/mirage";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SidebarDrawerProvider } from "@/contexts/SidebarDrawerContext";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 // aqui original do chakra havia essa linha que fiz de outra forma nao sei como para funcionar
 // import { SidebarDrawerProvider } from "@/contexts/SidebarDrawerContext";
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </SidebarDrawerProvider>
       </ChakraProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )
 }
