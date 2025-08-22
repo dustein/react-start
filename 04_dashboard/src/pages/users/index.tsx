@@ -7,6 +7,7 @@ import { PaginationComponent } from '../../components/PaginationComponent/index'
 import Link from "next/link";
 import { useEffect } from "react";
 import { useQueryClient , useQuery } from "@tanstack/react-query";
+import { api } from "@/services/api";
 
 interface User {
   id: string;
@@ -18,9 +19,9 @@ interface User {
 export default function UserList() {
 
   const { data, isLoading, error, isFetching } = useQuery({ queryKey: ['users'], queryFn: async () => {
-    const response = await fetch('http://localhost:3000/api/users')
-    const data = await response.json()
     
+    const { data } = await api.get('users')
+        
     const users = data.users.map((user: User )=> {
       return {
         id: user.id,
